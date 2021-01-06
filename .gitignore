@@ -1,15 +1,14 @@
-HELP.md
+### Maven ###
+.metadata
+.settings/
+.project
+.classpath
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+bin/
 
 ### STS ###
 .apt_generated
-.classpath
 .factorypath
-.project
-.settings
 .springBeans
 .sts4-cache
 
@@ -20,14 +19,9 @@ target/
 *.ipr
 
 ### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+nbproject/private/
 build/
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### VS Code ###
-.vscode/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
