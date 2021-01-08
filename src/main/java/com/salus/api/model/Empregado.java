@@ -1,7 +1,10 @@
 package com.salus.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Empregado {
 
+	@JsonIgnore
 	private Long id;
 	private String nome;
 	private String cpf;
