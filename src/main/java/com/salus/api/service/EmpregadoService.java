@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.salus.api.controller.dto.EmpregadoDTO;
 import com.salus.api.exception.ObjectNotFoundException;
 import com.salus.api.model.Empregado;
-import com.salus.api.repository.repository.EmpregadoRepository;
+import com.salus.api.repository.EmpregadoRepository;
 import com.salus.api.service.iservice.IEmpregadoService;
 
 @Service

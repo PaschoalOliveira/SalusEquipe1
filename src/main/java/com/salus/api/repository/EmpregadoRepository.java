@@ -1,4 +1,4 @@
-package com.salus.api.repository.repository;
+package com.salus.api.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
