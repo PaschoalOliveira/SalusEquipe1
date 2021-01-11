@@ -1,21 +1,12 @@
-package com.salus.api.repository.irepository;
+package com.salus.api.repository.repository;
 
-import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import com.salus.api.model.Empregado;
 
-public interface IEmpregadoRepository {
-	
-	List<Empregado> listar();
-	
-	Empregado buscarPorId(Long id);
-	
-	Empregado salvar (Empregado empregado);
-	
-	Empregado atualizar (Empregado empregado);
-	
-	Empregado atualizarCampo (Empregado empregado);
-	
-	void deletar(Empregado empregado);
+@Repository
+public interface EmpregadoRepository extends JpaRepository<Empregado, Long>{
 
 }

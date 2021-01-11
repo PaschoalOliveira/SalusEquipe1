@@ -2,6 +2,7 @@ package com.salus.api.service.iservice;
 
 import java.util.List;
 
+import com.salus.api.controller.dto.EmpregadoDTO;
 import com.salus.api.model.Empregado;
 
 public interface IEmpregadoService {
@@ -10,11 +11,11 @@ public interface IEmpregadoService {
 	
 	Empregado buscarPorId(Long id);
 
-	Empregado salvar(Empregado empregado);
+	EmpregadoDTO salvar(Empregado empregado);
 	
-	Empregado atualizar(Empregado empregado);
+	Empregado atualizar(Long id,Empregado empregado);
 	
-	Empregado atualizarCampo(Empregado empregado);
+	Empregado atualizarCampo(Long id,Empregado empregado);
 	
 	void deletar(Long id);
 	
