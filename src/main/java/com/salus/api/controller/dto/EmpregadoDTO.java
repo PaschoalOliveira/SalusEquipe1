@@ -4,6 +4,7 @@ import com.salus.api.model.Empregado;
 
 public class EmpregadoDTO {
 	
+	private Long id;
 	private String nome;
 	private String cpf;
 	private String email;
@@ -12,10 +13,22 @@ public class EmpregadoDTO {
 	
 	
 	public EmpregadoDTO(Empregado empregado) {
+		this.id = empregado.getId();
 		this.nome = empregado.getNome();
 		this.cpf = empregado.getCpf();
 		this.email = empregado.getEmail();
 		this.cargo = empregado.getCargo();
+		this.salario = empregado.getSalario();
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 
