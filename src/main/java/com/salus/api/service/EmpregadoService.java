@@ -3,6 +3,9 @@ package com.salus.api.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.salus.api.controller.dto.EmpregadoDTO;
@@ -18,8 +21,10 @@ public class EmpregadoService implements IEmpregadoService {
 	private EmpregadoRepository empregadoRepository;
 	
 	@Override
-	public List<Empregado> listar() {
-		return empregadoRepository.findAll();
+	public Page<Empregado> listar(Integer page, Integer linesPerPage, String orderBy, String direction, String nome, Double salarioMenor, Double salarioMaior) {
+		
+		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
+		return empregadoRepository.findByNomeContainingAndSalarioBetween(nome, salarioMenor.doubleValue(), salarioMaior.doubleValue(), pageRequest);
 	}
 
 	@Override

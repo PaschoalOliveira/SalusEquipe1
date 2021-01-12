@@ -2,12 +2,14 @@ package com.salus.api.service.iservice;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 import com.salus.api.controller.dto.EmpregadoDTO;
 import com.salus.api.model.Empregado;
 
 public interface IEmpregadoService {
 
-	List<Empregado> listar();
+	public Page<Empregado> listar(Integer page, Integer linesPerPage, String orderBy, String direction, String nome, Double salarioMaior, Double salarioMenor);
 	
 	Empregado buscarPorId(Long id);
 

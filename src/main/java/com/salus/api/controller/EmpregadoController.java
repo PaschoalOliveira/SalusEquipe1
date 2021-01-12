@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -29,9 +31,15 @@ public class EmpregadoController {
 	private EmpregadoService empregadoService;
 	
 	@GetMapping
-	public ResponseEntity<List<EmpregadoDTO>> listar(){
-		return ResponseEntity.ok(empregadoService.listar().stream()
-				.map(e -> new EmpregadoDTO(e)).collect(Collectors.toList()));
+	public ResponseEntity<Page<Empregado>> listar(          
+			@RequestParam(value="page", defaultValue="0") Integer page,
+            @RequestParam(value="linesPerPage", defaultValue="10") Integer linesPerPage,
+            @RequestParam(value="orderBy", defaultValue="nome") String orderBy,
+            @RequestParam(value="direction", defaultValue="ASC") String direction,
+            @RequestParam(value="nome", defaultValue="") String nome,
+            @RequestParam(value = "salarioMenor", defaultValue="0") Double salarioMenor,
+            @RequestParam(value = "salarioMaior", defaultValue = "100000") Double salaioMaior){
+		return ResponseEntity.ok(empregadoService.listar(page, linesPerPage, orderBy, direction, nome, salarioMenor, salaioMaior));
 	}
 	
 	@GetMapping("/{id}")
