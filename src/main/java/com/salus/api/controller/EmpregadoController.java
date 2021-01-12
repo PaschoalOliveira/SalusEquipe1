@@ -35,16 +35,16 @@ public class EmpregadoController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Empregado> buscarPorId(@PathVariable Long id){
-		return ResponseEntity.ok(empregadoService.buscarPorId(id));
+	public ResponseEntity<EmpregadoDTO> buscarPorId(@PathVariable Long id){
+		return ResponseEntity.ok(new EmpregadoDTO(empregadoService.buscarPorId(id)));
 	}
 	
 	@PostMapping
 	public ResponseEntity<EmpregadoDTO> salvar(@RequestBody Empregado empregado){
-		EmpregadoDTO empregadoDto = empregadoService.salvar(empregado);
+		Empregado empregadoSalvo = empregadoService.salvar(empregado);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("v1/empregados/{id}").buildAndExpand(empregadoDto.getId()).toUri();
-		return ResponseEntity.created(uri).body(empregadoDto);
+                .path("/{id}").buildAndExpand(empregadoSalvo.getId()).toUri();
+		return ResponseEntity.created(uri).body(new EmpregadoDTO(empregadoSalvo));
 	}
 	
 	@PutMapping("/{id}")
@@ -60,6 +60,6 @@ public class EmpregadoController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deletar(@PathVariable Long id){
 		empregadoService.deletar(id);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.noContent().build();
 	}
 }

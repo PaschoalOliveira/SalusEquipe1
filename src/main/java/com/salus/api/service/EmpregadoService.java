@@ -29,9 +29,8 @@ public class EmpregadoService implements IEmpregadoService {
 	}
 
 	@Override
-	public EmpregadoDTO salvar(Empregado empregado) {
-		empregadoRepository.save(empregado);
-		return new EmpregadoDTO(empregado);
+	public Empregado salvar(Empregado empregado) {
+		return empregadoRepository.save(empregado);
 	}
 
 	@Override

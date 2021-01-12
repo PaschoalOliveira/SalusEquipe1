@@ -11,7 +11,7 @@ public interface IEmpregadoService {
 	
 	Empregado buscarPorId(Long id);
 
-	EmpregadoDTO salvar(Empregado empregado);
+	Empregado salvar(Empregado empregado);
 	
 	Empregado atualizar(Long id,Empregado empregado);
 	
