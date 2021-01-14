@@ -7,7 +7,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.salus.api.exception.ObjectNotFoundException;
-import com.salus.api.model.Empregado;
 import com.salus.api.model.Tecnico;
 import com.salus.api.repository.TecnicoRepository;
 
