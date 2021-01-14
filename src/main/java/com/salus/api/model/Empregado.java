@@ -1,5 +1,6 @@
 package com.salus.api.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ import javax.validation.constraints.NotNull;
 public class Empregado {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_empregado")
 	private Long id;
 	@NotEmpty
 	private String nome;

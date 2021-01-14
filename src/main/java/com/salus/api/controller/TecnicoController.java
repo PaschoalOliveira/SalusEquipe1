@@ -17,6 +17,10 @@ import com.salus.api.model.Tecnico;
 
 import com.salus.api.service.TecnicoService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 
 @RestController
 @RequestMapping("/v1/tecnicos")
@@ -26,6 +30,12 @@ public class TecnicoController {
 	private TecnicoService tecnicoService;
 	
 	@GetMapping
+	@ApiOperation(value = "Retorna uma lista de tecnicos")
+	@ApiResponses(value = {
+		    @ApiResponse(code = 200, message = "Retorna uma lista de tecnicos"),
+		    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+		    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+		    })
 	public ResponseEntity<Page<Tecnico>> listar(
 			@RequestParam(value="page", defaultValue="0") Integer page,
             @RequestParam(value="linesPerPage", defaultValue="10") Integer linesPerPage,
@@ -39,22 +49,46 @@ public class TecnicoController {
 	}
 	
 	@GetMapping("/{id}")
+	@ApiOperation(value = "Retorna um tecnico pelo id")
+	@ApiResponses(value = {
+		    @ApiResponse(code = 200, message = "Retorna um Tecnico"),
+		    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+		    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+		    })
 	public ResponseEntity<Tecnico> buscarPorId(@PathVariable Long id) {
 		return ResponseEntity.ok(tecnicoService.buscarPorId(id));
 	}
 	
 	@PostMapping
+	@ApiOperation(value = "Persiste um tecnico pelo id")
+	@ApiResponses(value = {
+		    @ApiResponse(code = 201, message = "Tecnico persistido"),
+		    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+		    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+		    })
 	public ResponseEntity<Tecnico> salvar(@RequestBody Tecnico tecnico){
 		return ResponseEntity.ok(tecnicoService.salvar(tecnico));
 	}
 	
 	@PutMapping("/{id}")
+	@ApiOperation(value = "Edita um tecnico pelo id")
+	@ApiResponses(value = {
+		    @ApiResponse(code = 200, message = "Tecnico editado"),
+		    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+		    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+		    })
 	public ResponseEntity<Tecnico> editar(@PathVariable Long id, @RequestBody Tecnico tecnico) {
 		return ResponseEntity.ok(tecnicoService.editar(id, tecnico));
 	}
 	
 	
 	@DeleteMapping("/{id}")
+	@ApiOperation(value = "Deleta um tecnico pelo id")
+	@ApiResponses(value = {
+		    @ApiResponse(code = 204, message = "Tecnico deletado"),
+		    @ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+		    @ApiResponse(code = 500, message = "Foi gerada uma exceção"),
+		    })
 	public ResponseEntity<?> apagar(@PathVariable Long id) {
 		tecnicoService.apagar(id);
 		return ResponseEntity.noContent().build();
