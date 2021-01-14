@@ -27,6 +27,13 @@ public class Servico {
 
 	}
 
+	public Servico(Long id, String endereco, String descricao, Tecnico tecnico) {
+		this.id = id;
+		this.endereco = endereco;
+		this.descricao = descricao;
+		this.tecnico = tecnico;
+	}
+
 	public Long getId() {
 		return id;
 	}
