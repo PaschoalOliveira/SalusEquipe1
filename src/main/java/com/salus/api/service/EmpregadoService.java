@@ -15,6 +15,8 @@ import com.salus.api.service.iservice.IEmpregadoService;
 @Service
 public class EmpregadoService implements IEmpregadoService {
 
+	private static final String EMPREGADO_NAO_EXISTE = "O empregado não existe.";
+
 	@Autowired
 	private EmpregadoRepository empregadoRepository;
 	
@@ -28,7 +30,7 @@ public class EmpregadoService implements IEmpregadoService {
 	@Override
 	public Empregado buscarPorId(Long id) {		
 		return empregadoRepository.findById(id)
-				.orElseThrow(() -> new ObjectNotFoundException("O empregado não existe."));
+				.orElseThrow(() -> new ObjectNotFoundException(EMPREGADO_NAO_EXISTE));
 	}
 
 	@Override
@@ -48,7 +50,7 @@ public class EmpregadoService implements IEmpregadoService {
 	                empregadoAtualizado.setSalario(empregado.getSalario());
 	                
 	            	return empregadoRepository.save(empregadoAtualizado);
-	            }).orElseThrow(() -> new ObjectNotFoundException("O empregado não existe."));
+	            }).orElseThrow(() -> new ObjectNotFoundException(EMPREGADO_NAO_EXISTE));
 	}
 
 	@Override
@@ -60,7 +62,7 @@ public class EmpregadoService implements IEmpregadoService {
 	@Override
 	public void deletar(Long id) {
 		Empregado empregado = empregadoRepository.findById(id)
-		.orElseThrow(() -> new ObjectNotFoundException("O empregado não existe."));
+		.orElseThrow(() -> new ObjectNotFoundException(EMPREGADO_NAO_EXISTE));
 		empregadoRepository.delete(empregado);
 	}
 

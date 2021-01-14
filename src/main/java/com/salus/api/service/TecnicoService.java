@@ -13,6 +13,8 @@ import com.salus.api.repository.TecnicoRepository;
 @Service
 public class TecnicoService {
 
+	private static final String TECNICO_NAO_EXISTE = "O Técnico não existe.";
+
 	@Autowired
 	private TecnicoRepository tecnicoRepository;
 
@@ -27,20 +29,20 @@ public class TecnicoService {
 	
 	public void apagar(Long id) {
 		Tecnico tecnico = tecnicoRepository.findById(id)
-				.orElseThrow(() -> new ObjectNotFoundException("O Técnico não existe."));
+				.orElseThrow(() -> new ObjectNotFoundException(TECNICO_NAO_EXISTE));
 		tecnicoRepository.delete(tecnico);
 	}
 
 	public Tecnico buscarPorId(Long id) {
 	return tecnicoRepository.findById(id)
-				.orElseThrow(() -> new ObjectNotFoundException("O Técnico não existe."));
+				.orElseThrow(() -> new ObjectNotFoundException(TECNICO_NAO_EXISTE));
 		
 	}
 
 	public Tecnico editar(Long id, Tecnico tecnico) {
 		
 	 Tecnico tecnicoAtualizado = tecnicoRepository.findById(id)
-				.orElseThrow(() -> new ObjectNotFoundException("O Técnico não existe."));
+				.orElseThrow(() -> new ObjectNotFoundException(TECNICO_NAO_EXISTE));
 	 
 	 tecnicoAtualizado.setEspecialidade(tecnico.getEspecialidade());
 	 return tecnicoRepository.save(tecnicoAtualizado);

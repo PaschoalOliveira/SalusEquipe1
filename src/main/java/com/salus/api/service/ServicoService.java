@@ -13,6 +13,8 @@ import com.salus.api.repository.ServicoRepository;
 @Service
 public class ServicoService {
 
+	private static final String SERVICO_NAO_EXISTE = "O Serviço não existe.";
+
 	@Autowired
 	private ServicoRepository servicoRepository;
 
@@ -27,19 +29,19 @@ public class ServicoService {
 	
 	public void apagar(Long id) {
 		Servico servico = servicoRepository.findById(id)
-				.orElseThrow(() -> new ObjectNotFoundException("O Serviço não existe."));
+				.orElseThrow(() -> new ObjectNotFoundException(SERVICO_NAO_EXISTE));
 		servicoRepository.delete(servico);
 	}
 
 	public Servico buscarPorId(Long id) {
 	return servicoRepository.findById(id)
-				.orElseThrow(() -> new ObjectNotFoundException("O Serviço não existe."));
+				.orElseThrow(() -> new ObjectNotFoundException(SERVICO_NAO_EXISTE));
 		
 	}
 
 	public Servico editar(Long id, Servico novoServico) {
 		 Servico servicoAntigo = servicoRepository.findById(id)
-				.orElseThrow(() -> new ObjectNotFoundException("O Serviço não existe."));
+				.orElseThrow(() -> new ObjectNotFoundException(SERVICO_NAO_EXISTE));
 		 servicoAntigo.setEndereco(novoServico.getEndereco());
 		 servicoAntigo.setDescricao(novoServico.getDescricao());
 		 servicoAntigo.setTecnico(novoServico.getTecnico());
