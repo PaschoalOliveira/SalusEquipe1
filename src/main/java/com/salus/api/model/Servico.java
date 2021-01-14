@@ -20,7 +20,7 @@ public class Servico {
 	private String descricao;
 
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "tecnico", referencedColumnName = "id_empregado")
+	@JoinColumn(name = "id_tecnico", referencedColumnName = "id_empregado")
 	private Tecnico tecnico;
 
 	public Servico() {
