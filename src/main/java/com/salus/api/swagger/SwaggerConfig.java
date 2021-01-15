@@ -3,6 +3,8 @@ package com.salus.api.swagger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.google.common.base.Predicates;
+
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -18,7 +20,14 @@ public class SwaggerConfig {
 				.select()
 				.apis(RequestHandlerSelectors
 				.any())
-				.paths(PathSelectors.any())
+				/*
+				.paths(Predicates.or(
+	                    PathSelectors.ant("/v1/empregados"),
+	                    PathSelectors.ant("/v1/servicos")
+						)
+	            )
+	            */
+				.apis( RequestHandlerSelectors.basePackage("com.salus.api.controller") )
 				.build();
 	}
 } 
