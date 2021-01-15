@@ -61,7 +61,7 @@ public class EmpregadoTest {
         Empregado found = empregadoRepository.findById(6l).get();
 
         // then
-        assertThat(found.getNome()).isEqualTo(empregado.getNome());
+        assertThat(found.getNome()).isEqualTo("aaa");
     }
 	
 	@Test
