@@ -1,6 +1,5 @@
 package com.salus.api;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -48,9 +47,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
         httpSecurity.cors().and().csrf().disable().authorizeRequests()
                 .antMatchers(AUTH_WHITELIST).permitAll()
                 .antMatchers(HttpMethod.POST, "/v1/users/signup").permitAll()
+                .antMatchers(HttpMethod.POST, "/v1/users/login").permitAll()
                 .anyRequest().authenticated()
-                .and().addFilter(new AuthenticationFilter(authenticationManager()))
-                .addFilter(new AuthorizationFilter(authenticationManager()))
+                .and().addFilter(new AuthorizationFilter(authenticationManager()))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 

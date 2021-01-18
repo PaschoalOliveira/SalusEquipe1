@@ -1,6 +1,7 @@
 package com.salus.api.controller;
 
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -48,6 +49,19 @@ public class UserController
         ResponseEntity<?> response = restTemplate
         		  .exchange(urlCadastroUsuario, HttpMethod.POST, request, Usuario.class);
         
+    }
+    
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Usuario user) {
+    	RestTemplate template = new RestTemplate();
+    	String url = "http://localhost:8081/login";
+    	 HttpEntity<Usuario> request = new HttpEntity<>(user);
+    	HttpEntity<String> response = template.exchange(url, HttpMethod.POST, request, String.class);
+
+    	HttpHeaders headers = response.getHeaders();
+    	
+    	return ResponseEntity.ok().headers(headers).build();
+
     }
 
 }
