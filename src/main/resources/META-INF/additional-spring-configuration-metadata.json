@@ -1,0 +1,7 @@
+{"properties": [
+  {
+    "name": "endereco.autentica",
+    "type": "java.lang.String",
+    "description": "Link da api de autenticação"
+  }
+]}

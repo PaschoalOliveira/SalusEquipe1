@@ -1,5 +1,6 @@
 package com.salus.api.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -12,56 +13,40 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.salus.api.model.Usuario;
-import com.salus.api.repository.UsuarioRepository;
 
 @RestController
-
 @RequestMapping(value = "/v1/users")
+public class UserController {
 
-public class UserController
-
-{
-
-    private UsuarioRepository userRepository;
-
+	@Value("${endereco.autentica}")
+	private String urlAutentica;
+	
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserController(UsuarioRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder)
-
-    {
-
-        this.userRepository = userRepository;
-
+    public UserController(BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-
     }
+    
     @PostMapping("/signup")
-
-    public void signUp(@RequestBody Usuario user)
-
-    {
+    public void signUp(@RequestBody Usuario user) {
     	RestTemplate restTemplate = new RestTemplate();
-    	String urlCadastroUsuario
-    	  = "http://localhost:8081/v1/users/signup";
+    	String urlCadastroUsuario= urlAutentica + "/v1/users/signup";
     	
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        HttpEntity<Usuario> request = new HttpEntity<>(user);
-        ResponseEntity<?> response = restTemplate
-        		  .exchange(urlCadastroUsuario, HttpMethod.POST, request, Usuario.class);
-        
+        HttpEntity<Usuario> request = new HttpEntity<>(user); 
+        restTemplate.exchange(urlCadastroUsuario, HttpMethod.POST, request, Usuario.class);
     }
     
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Usuario user) {
     	RestTemplate template = new RestTemplate();
-    	String url = "http://localhost:8081/login";
-    	 HttpEntity<Usuario> request = new HttpEntity<>(user);
-    	HttpEntity<String> response = template.exchange(url, HttpMethod.POST, request, String.class);
+    	String urlLoginUsuario = urlAutentica + "/login";
+    	HttpEntity<Usuario> request = new HttpEntity<>(user);
+    	HttpEntity<String> response = template.exchange(urlLoginUsuario, HttpMethod.POST, request, String.class);
 
     	HttpHeaders headers = response.getHeaders();
     	
     	return ResponseEntity.ok().headers(headers).build();
-
     }
 
 }
