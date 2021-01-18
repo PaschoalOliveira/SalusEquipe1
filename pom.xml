@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.salus</groupId>
-	<artifactId>SALUS</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>salus</artifactId>
+	<version>0.0.1</version>
 	<name>SALUS</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Api rest do projeto salus</description>
 
 	<properties>
 		<java.version>11</java.version>
