@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  autentica:
+    image: ivanilsonjunior/autentica:0.0.1
+    container_name: autentica
+    restart: always
+    ports: 
+      - "8081:8081"
+  salusapi:
+    image: ivanilsonjunior/salusapi:0.0.1
+    container_name: salusapi
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - autentica
