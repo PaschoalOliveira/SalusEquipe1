@@ -42,10 +42,11 @@ public class UserController {
     	RestTemplate template = new RestTemplate();
     	String urlLoginUsuario = urlAutentica + "/login";
     	HttpEntity<Usuario> request = new HttpEntity<>(user);
+
     	HttpEntity<String> response = template.exchange(urlLoginUsuario, HttpMethod.POST, request, String.class);
 
     	HttpHeaders headers = response.getHeaders();
-    	
+
     	return ResponseEntity.ok().headers(headers).build();
     }
 
