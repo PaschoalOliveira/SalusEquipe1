@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.salus</groupId>
-	<artifactId>salus</artifactId>
+	<artifactId>SALUS</artifactId>
 	<version>0.0.1</version>
 	<name>SALUS</name>
 	<description>Api rest do projeto salus</description>
